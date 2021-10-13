@@ -1,5 +1,5 @@
 CREATE TABLE Employees{
-    EmployeeID INT,
+    EmployeeID INT PRIMARY KEY,
     last_name VARCHAR(30),
     first_name VARCHAR(30),
     title VARCHAR(30),
@@ -16,7 +16,7 @@ CREATE TABLE Employees{
     Email VARCHAR(30)
 };
 
-ALTER TABE Employees 
+ALTER TABLE Employees 
 FOREIGN KEY (EmployeeID)
 REFERENCES Employees(EmployeeID)
 ON DELETE SET NULL;
@@ -36,6 +36,12 @@ CREATE TABLE Customers{
     email VARCHAR(30),
     support_repID INT
 };
+
+ALTER TABLE Customers
+ADD FOREIGN KEY(CustomerID)
+REFERENECES Customers(support_repID)
+ON DELETE SET NULL;
+
 
 CREATE TABLE Invoices { 
 invoiceID INT,
@@ -70,8 +76,12 @@ CREATE TABLE Tracks{
     composer VARCHAR(30),
     milliseconds FLOAT, 
     bytes FLOAT,
-    uniprice INT
+    uniprice INT,
+    avg_bytes FLOAT
 };
+
+SELECT AVG(bytes) AS avg_bytes
+FROM Tracks
 
 CEATE TABLE Albums {
     albumID INT, 
